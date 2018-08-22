@@ -1,7 +1,6 @@
 from keras.layers import Dense, Dropout, Input
 from keras.layers import Conv2D, MaxPooling2D, UpSampling2D, Flatten
 from keras.layers import concatenate
-
 from keras.layers.wrappers import TimeDistributed as TD
 
 
