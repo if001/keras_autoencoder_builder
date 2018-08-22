@@ -6,8 +6,8 @@ class AutoEncoderBuidler():
     def __init__(self,
                  loss='mean_squared_error',
                  opt='adam',
-                 encoder_weight_file_path=''
-                 decoder_weight_file_path=''
+                 encoder_weight_file=''
+                 decoder_weight_file=''
                  ):
         """
         loss: オブジェクト or String
@@ -31,7 +31,7 @@ class AutoEncoderBuidler():
             decoder_weight_file_path
         )
 
-        self.__build_from_model(
+        self.auto_encoder = self.__build_from_model(
             LayerSet.encoder_input(),
             [self.encoder, self.decoder]
         )
@@ -42,11 +42,7 @@ class AutoEncoderBuidler():
         optimizerやlossが、オブジェクト or Stringで飛んでくるため
         ここで開けて関数にする
         """
-
-        if type(f) == str:
-            return f
-        else:
-            return f()
+        return f if type(f) == str else f()
 
     def __model_builder(self, input_layer, layers, file_path=''):
         if file_path == '':
@@ -69,7 +65,12 @@ class AutoEncoderBuidler():
 
 
 def main():
-    auto_en = AutoEncoderBuidler()
+    builded = AutoEncoderBuidler()
+
+    builded.encoder.fit()
+    builded.decoder.fit()
+    builded.auto_encoder.fit()
+    builded.auto_encoder.predict()
 
 
 if __name__ == "__main__":

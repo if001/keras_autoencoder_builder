@@ -13,3 +13,15 @@ auto_encoder = AutoEncoderBuidler(
 ```
 
 encoderとdecoderのweightを保存したファイルを渡すとモデルがロードされます。
+
+
+モデルが帰ってくるので、学習や推論などのメソッドが呼び出せます。
+
+```
+builded = AutoEncoderBuidler()
+
+builded.encoder.fit()
+builded.decoder.fit()
+builded.auto_encoder.fit()
+builded.auto_encoder.predict()
+```
